@@ -63,10 +63,12 @@ $superheroes = [
   ], 
 ];
 
+// Extract the aliases from the superheroes array
+$aliases = array_map(function($superhero) {
+    return $superhero['alias'];
+}, $superheroes);
+
+// Return the aliases as a JSON-encoded array
+echo json_encode($aliases);
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
