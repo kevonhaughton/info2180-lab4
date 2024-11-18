@@ -1,14 +1,13 @@
 document.getElementById('searchButton').addEventListener('click', function() {
-    fetch('superheroes.php')
-        .then(response => response.json())
+    const query = document.getElementById('searchQuery').value.trim();
+    const url = query ? `superheroes.php?query=${encodeURIComponent(query)}` : 'superheroes.php';
+
+    fetch(url)
+        .then(response => response.text())
         .then(data => {
-            let superheroesList = "<ul>";
-            data.forEach(superhero => {
-                superheroesList += `<li>${superhero}</li>`;
-            });
-            superheroesList += "</ul>";
-            alert(superheroesList);
+            document.getElementById('result').innerHTML = data;
         })
         .catch(error => console.error('Error:', error));
 });
+
 
